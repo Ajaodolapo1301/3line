@@ -62,7 +62,7 @@ print(url);
       int statusCode = response.statusCode;
 
       print(jsonDecode(response.body));
-// log(jsonDecode(response.body));
+
       if(statusCode != 200){
         result['message'] = "error occurred";
         result['error'] = true;
@@ -71,7 +71,6 @@ print(url);
         List<WeeklyModel> weekly = [];
         (jsonDecode(response.body)["daily"] as List).forEach((week){
           weekly.add(WeeklyModel.fromJson(week));
-
         });
 
         result['weekly'] = weekly;
@@ -80,7 +79,7 @@ print(url);
     }catch(error){
       // print(error.toString());
     }
-// print(result);
+print(result);
     return result;
   }
 

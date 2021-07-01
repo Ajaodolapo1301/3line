@@ -20,6 +20,7 @@ class Weekly extends StatefulWidget {
 class _WeeklyState extends State<Weekly> with AfterLayoutMixin<Weekly> {
   bool isLoading = false;
   TextStyle textStyle;
+  bool error = false;
   WeatherState weatherState;
   AppState appState;
   List<WeeklyModel> weeklyModel;
@@ -64,8 +65,6 @@ class _WeeklyState extends State<Weekly> with AfterLayoutMixin<Weekly> {
             ),
             isLoading
                 ? _beforeDataLoaded()
-                : weeklyModel.isEmpty
-                    ? _beforeDataEmpty()
                     : SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
                           if (index > 0) {
@@ -74,7 +73,7 @@ class _WeeklyState extends State<Weekly> with AfterLayoutMixin<Weekly> {
                             );
                           }
                           return Container();
-                        }, childCount: weeklyModel.length),
+                        }, childCount: weeklyModel?.length),
                       ),
           ],
         ));
@@ -110,11 +109,17 @@ class _WeeklyState extends State<Weekly> with AfterLayoutMixin<Weekly> {
       isLoading = true;
     });
     var result = await weatherState.fetchWeatherOneCall(lon: lon, lat: lat);
+
+      print(result);
     setState(() {
       isLoading = false;
     });
     if (result["error"] == false) {
       weeklyModel = result["weekly"];
-    } else {}
+    } else {
+      setState(() {
+        error = true;
+      });
+    }
   }
 }

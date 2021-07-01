@@ -41,7 +41,7 @@ class MyUtils {
       return "sunny";
     }
     else if (condition <= 804){
-      return "rainy";
+      return "cloudy";
     }
     return "sunny";
   }

@@ -5,10 +5,10 @@ class WeatherModel{
  double  lat;
  double  lon;
  String timezone;
- double temp;
- double feels_like;
+ var temp;
+ var feels_like;
 
- double wind;
+ var wind;
  String name;
  var   humidity;
  List <Weather> weather;

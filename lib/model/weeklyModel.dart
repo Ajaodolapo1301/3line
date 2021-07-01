@@ -3,12 +3,12 @@ import 'package:liner/model/weatherModel.dart';
 
 class WeeklyModel {
   int dt;
-  double day;
-  double min;
-  double max;
-  double night;
-  double eve;
-  double morn;
+  var day;
+  var min;
+  var max;
+  var night;
+  var eve;
+  var morn;
 List<Weather> weather;
 
   WeeklyModel({this.weather, this.dt, this.day, this.night, this.morn, this.min, this.max, this.eve, });
