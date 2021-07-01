@@ -45,9 +45,9 @@ Future <void> main() async {
 
 
   runApp(
-      // DevicePreview(
-      //     enabled: false,
-      //     builder: (context) =>
+      DevicePreview(
+          enabled: true,
+          builder: (context) =>
               MultiProvider(
                   providers: [
                     ChangeNotifierProvider(create: (_) => AppState()),
@@ -56,7 +56,7 @@ Future <void> main() async {
                   child: MyApp(
 
                   ))
-      // )
+      )
   );
 }
 class MyApp extends StatelessWidget {

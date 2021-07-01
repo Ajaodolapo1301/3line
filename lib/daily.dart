@@ -143,7 +143,7 @@ class WeeklyWidget extends StatelessWidget {
               ],
             ),
           ),
-          // SizedBox(height: 50,),
+
 
 
         ],

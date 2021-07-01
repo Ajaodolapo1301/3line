@@ -46,7 +46,7 @@ class _WeeklyState extends State<Weekly> with AfterLayoutMixin<Weekly> {
                 children: [
                   FlexibleSpaceBar(
                     background: Image.asset(
-                      "assets/images/night.jpeg",
+                      "assets/images/${MyUtils.getCondition(widget.weatherModel.weather[0].id)}.jpeg",
                       fit: BoxFit.cover,
                       height: double.infinity,
                       width: double.infinity,

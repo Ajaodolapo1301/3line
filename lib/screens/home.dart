@@ -8,6 +8,7 @@ import 'package:liner/model/weeklyModel.dart';
 import 'package:liner/provider/appState.dart';
 import 'package:liner/provider/weatherState.dart';
 import 'package:liner/screens/weekly.dart';
+import 'package:liner/utils/myUtils.dart';
 import 'package:liner/utils/navigation/navigator.dart';
 import 'package:provider/provider.dart';
 
@@ -62,7 +63,7 @@ AppState appState;
       Container(
         child: Stack(
           children: [
-            Image.asset("assets/images/${getCondition(weatherModel?.weather[0].id)}.jpeg",
+            Image.asset("assets/images/${MyUtils.getCondition(weatherModel?.weather[0].id)}.jpeg",
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,
@@ -111,21 +112,7 @@ AppState appState;
 
 
 
-  getCondition(int condition){
-    if(condition < 300){
-  return "cloudy";
-    }else if (condition < 400){
-  return "wet";
-    }else if (condition < 600){
-    return "rainy";
-    }
-    else if (condition < 800){
-    return "rainy";
-    }
-    else if (condition < 804){
-    return "cloudy";
-    }
-  }
+
 
 
 
