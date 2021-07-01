@@ -36,15 +36,19 @@ class _SplashPageState extends State<SplashPage> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: Colors.black
+                color: Colors.white
             ),
           ),
 
-          Center(
-            child: Container(
-                height: 200,
-                width: 200,
-                child: Image.asset('images/appicon.png')),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  height: 100,
+                  width: 100,
+                  child: Image.asset('assets/images/weatherApp.gif')),
+              Text("Weather App", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
+            ],
           ),
 
         ],

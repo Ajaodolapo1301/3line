@@ -33,16 +33,17 @@ class MyUtils {
     if(condition < 300){
       return "cloudy";
     }else if (condition < 400){
-      return "wet";
+      return "cloudy";
     }else if (condition < 600){
       return "rainy";
     }
-    else if (condition < 800){
+    else if (condition == 800){
+      return "sunny";
+    }
+    else if (condition <= 804){
       return "rainy";
     }
-    else if (condition < 804){
-      return "cloudy";
-    }
+    return "sunny";
   }
 
 }

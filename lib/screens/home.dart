@@ -8,6 +8,7 @@ import 'package:liner/provider/weatherState.dart';
 import 'package:liner/screens/weekly.dart';
 import 'package:liner/utils/myUtils.dart';
 import 'package:liner/utils/navigation/navigator.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -41,17 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-          ),
+
           title: Text(""),
           actions: [
             PopupMenuButton(
               onSelected: (value) {
-                  pushTo(context, Weekly(weatherModel: weatherModel,));
+              value == 1 ?     pushTo(context, Weekly(weatherModel: weatherModel,)) : toast("Check back");
               },
               itemBuilder: (context) => [
                 PopupMenuItem(
@@ -84,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Stack(
                   children: [
                     Image.asset(
-                      "assets/images/${MyUtils.getCondition(weatherModel?.weather[0].id)}.jpeg",
+                      "assets/images/${MyUtils.getCondition(weatherModel.weather[0].id)}.jpeg",
                       fit: BoxFit.cover,
                       height: double.infinity,
                       width: double.infinity,

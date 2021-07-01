@@ -12,7 +12,7 @@ Daily({this.textStyle, this.weatherModel});
   @override
   Widget build(BuildContext context) {
     return   Container(
-      margin: EdgeInsets.only(left: 15),
+      margin: EdgeInsets.only(left: 15, right: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
 
@@ -58,7 +58,7 @@ Daily({this.textStyle, this.weatherModel});
                 children: [
                   Divider(color: Colors.white,),
                   SizedBox(height: 6.1 * SizeConfig.heightMultiplier,),
-                  Container(padding: EdgeInsets.only(right: 15, ),
+                  Container(padding: EdgeInsets.only(right: 0, ),
                     child: Column(
 
                       children: [
