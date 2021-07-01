@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:liner/provider/weatherState.dart';
 import 'package:liner/screens/home.dart';
+import 'package:liner/screens/splashPage.dart';
 import 'package:liner/screens/weekly.dart';
 import 'package:liner/utils/sizeConfig/sizeConfig.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -44,9 +45,9 @@ Future <void> main() async {
 
 
   runApp(
-      DevicePreview(
-          enabled: false,
-          builder: (context) =>
+      // DevicePreview(
+      //     enabled: false,
+      //     builder: (context) =>
               MultiProvider(
                   providers: [
                     ChangeNotifierProvider(create: (_) => AppState()),
@@ -54,7 +55,8 @@ Future <void> main() async {
                   ],
                   child: MyApp(
 
-                  )))
+                  ))
+      // )
   );
 }
 class MyApp extends StatelessWidget {
@@ -87,9 +89,9 @@ class MyApp extends StatelessWidget {
                   ),
 
                   locale: DevicePreview.locale(context), // Add the locale here
-                  builder: DevicePreview.appBuilder,
+                  // builder: DevicePreview.appBuilder,
 
-                  home: MyHomePage()
+                  home: SplashPage()
                 ),
               ),
             );

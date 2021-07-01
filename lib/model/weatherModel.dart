@@ -5,8 +5,14 @@ class WeatherModel{
  double  lat;
  double  lon;
  String timezone;
+ double temp;
+ double feels_like;
+
+ double wind;
+ String name;
+ var   humidity;
  List <Weather> weather;
-WeatherModel({this.weather, this.lat, this.lon, this.timezone});
+WeatherModel({this.weather, this.lat, this.lon, this.timezone, this.temp, this.humidity, this.name, this.feels_like, this.wind});
 
  WeatherModel.fromJson(Map<String, dynamic> json){
   if (json['weather'] != null) {
@@ -15,7 +21,11 @@ WeatherModel({this.weather, this.lat, this.lon, this.timezone});
     weather.add(new Weather.fromJson(v));
    });
   }
-
+  name = json["name"];
+  humidity = json["main"]["humidity"];
+  temp = json["main"]["temp"];
+ feels_like =  json["main"]["feels_like"];
+ wind = json["wind"]["speed"];
  }
 }
 

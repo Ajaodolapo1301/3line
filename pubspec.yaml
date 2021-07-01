@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   geolocator: ^5.2.0
   http:
+  intl: ^0.16.0
   flutter_svg: ^0.19.0
   provider: ^4.0.0+1
   after_layout: ^1.0.7+2
