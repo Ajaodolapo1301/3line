@@ -12,11 +12,12 @@ Daily({this.textStyle, this.weatherModel});
   @override
   Widget build(BuildContext context) {
     return   Container(
-      margin: EdgeInsets.only(top: 120, left: 15),
+      margin: EdgeInsets.only(left: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
+          SizedBox(height: 14.7 * SizeConfig.heightMultiplier ,),
           Expanded(
             flex:2,
             child: Column(
@@ -56,8 +57,8 @@ Daily({this.textStyle, this.weatherModel});
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Divider(color: Colors.white,),
-                  SizedBox(height: 50,),
-                  Container(padding: EdgeInsets.symmetric(horizontal: 20),
+                  SizedBox(height: 6.1 * SizeConfig.heightMultiplier,),
+                  Container(padding: EdgeInsets.only(right: 15, ),
                     child: Column(
 
                       children: [
@@ -70,7 +71,7 @@ Daily({this.textStyle, this.weatherModel});
                             IconAndText(image: "assets/images/wet.png", title: "Humidity", subtitle: "${weatherModel.humidity}%", textStyle: textStyle)
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 2.4 * SizeConfig.heightMultiplier,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -80,7 +81,7 @@ Daily({this.textStyle, this.weatherModel});
                             IconAndText(image: "assets/images/sunny.png", title: "UV index", subtitle: "22\u2103", textStyle: textStyle)
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        // SizedBox(height: 20,),
                       ],
                     ),
                   )

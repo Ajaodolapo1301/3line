@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:liner/daily.dart';
@@ -13,26 +11,19 @@ import 'package:liner/utils/navigation/navigator.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
-
-
-
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
-
-WeatherState weatherState;
+  WeatherState weatherState;
 
   TextStyle textStyle;
 
-bool isLoading = false;
+  bool isLoading = false;
 
-WeatherModel weatherModel;
-AppState appState;
+  WeatherModel weatherModel;
+  AppState appState;
 
   @override
   void initState() {
@@ -46,79 +37,90 @@ AppState appState;
     appState = Provider.of(context);
     weatherState = Provider.of(context);
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-          leading: IconButton(icon: Icon(Icons.search, color: Colors.white,),),
-        title: Text(""),
-        actions: [
-          IconButton(icon: Icon(Icons.waves_rounded, color: Colors.white,), onPressed: (){
-          pushTo(context, Weekly(weatherModel: weatherModel,));
-          })
-        ],
-      ),
-
-      body: isLoading ? Center(child: CircularProgressIndicator(),) :
-      Container(
-        child: Stack(
-          children: [
-            Image.asset("assets/images/${MyUtils.getCondition(weatherModel?.weather[0].id)}.jpeg",
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.black38
-              ),
+          ),
+          title: Text(""),
+          actions: [
+            PopupMenuButton(
+              onSelected: (value) {
+                  pushTo(context, Weekly(weatherModel: weatherModel,));
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text(
+                    "Weekly",
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                  ),
+                  value: 1,
+                ),
+                PopupMenuItem(
+                  child: Text(
+                    "Share",
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                  ),
+                  value: 2,
+                )
+              ],
             ),
-            Daily(textStyle: textStyle, weatherModel: weatherModel,)
+
+            // IconButton(icon: Icon(Icons.d, color: Colors.white,), onPressed: (){
+            //   pushTo(context, Weekly(weatherModel: weatherModel,));
+            // })
           ],
         ),
-      )
-    );
+        body: isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Container(
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      "assets/images/${MyUtils.getCondition(weatherModel?.weather[0].id)}.jpeg",
+                      fit: BoxFit.cover,
+                      height: double.infinity,
+                      width: double.infinity,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(color: Colors.black38),
+                    ),
+                    Daily(
+                      textStyle: textStyle,
+                      weatherModel: weatherModel,
+                    )
+                  ],
+                ),
+              ));
   }
-  getLocation() async{
+
+  getLocation() async {
     setState(() {
       isLoading = true;
     });
     print("caleed");
-    Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-        appState.latitude = position.latitude;
-        appState.longitude = position.longitude;
+    Position position = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    appState.latitude = position.latitude;
+    appState.longitude = position.longitude;
 
     fetch(lat: position.latitude, lon: position.longitude);
   }
 
-
-  fetch({lat, lon})async{
-
+  fetch({lat, lon}) async {
     var result = await weatherState.fetchWeatherdaily(lon: lon, lat: lat);
-      setState(() {
-        isLoading = false;
-      });
-      if(result["error"] == false){
+    setState(() {
+      isLoading = false;
+    });
+    if (result["error"] == false) {
       weatherModel = result["weather"];
-      }else{
-
-      }
-
-
+    } else {}
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
